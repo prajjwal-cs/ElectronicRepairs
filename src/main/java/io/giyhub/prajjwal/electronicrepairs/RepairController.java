@@ -29,4 +29,30 @@ public class RepairController {
     public List<Repair> getAllRepairs() {
         return repairService.getAllRepairs();
     }
+
+    @GetMapping("/customer/{customerName}")
+    public List<Repair> getRepairsByCustomerName(@PathVariable String customerName) {
+        return repairService.getRepairsByCustomerName(customerName);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<Repair> getRepairsByStatus(@PathVariable String status) {
+        return repairService.getRepairsByStatus(status);
+    }
+
+    @GetMapping("/device/{device}")
+    public List<Repair> getRepairByDevice(@PathVariable String device) {
+        return repairService.getRepairsByDevice(device);
+    }
+
+    @GetMapping("/customer/{customerName}/device/{device}")
+    public List<Repair> getRepairsByCustomerNameAndDevice(
+            @PathVariable String customerName, @PathVariable String device) {
+        return repairService.getRepairsByCustomerNameAndDevice(customerName, device);
+    }
+
+    @GetMapping("/count/status/{status}")
+    public Long getCountByStatus(@PathVariable String status) {
+        return repairService.getCountByStatus(status);
+    }
 }

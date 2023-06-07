@@ -44,7 +44,7 @@ public class RepairService {
     public List<Repair> getRepairsByCustomerNameAndDevice(String customerName, String device) {
         return repairRepository.findByCustomerNameAndDevice(customerName, device);
     }
-    private Long getCountByStatus(String status) {
+    public Long getCountByStatus(String status) {
         return repairRepository.countByStatus(status);
     }
 }
