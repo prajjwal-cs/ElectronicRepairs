@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Electronic Repair Service</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<h1>Electronic Repair Service</h1>
+
+<div id="repairFormContainer">
+    <h2>Create Repair Request</h2>
+    <form id="repairForm">
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName" required>
+
+        <label for="device">Device:</label>
+        <input type="text" id="device" required>
+
+        <label for="issue">Issue:</label>
+        <textarea id="issue" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div id="repairListContainer">
+    <h2>Repair Requests</h2>
+    <ul id="repairList"></ul>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
