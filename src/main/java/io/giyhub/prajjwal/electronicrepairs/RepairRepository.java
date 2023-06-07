@@ -18,4 +18,6 @@ public interface RepairRepository extends JpaRepository<Repair, Long> {
 
     @Query("SELECT r FROM Repair r WHERE r.status = 'Pending' ORDER BY r.customerName ASC")
     List<Repair> findPendingRepairsOrderedByCustomerName(String customerName);
+
+    void deleteById(Long id);
 }

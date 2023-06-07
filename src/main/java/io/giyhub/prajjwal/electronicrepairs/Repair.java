@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.lang.NonNull;
 
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ import java.util.Objects;
 public class Repair {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private long id;
     private String customerName;
     private String device;
@@ -80,12 +82,6 @@ public class Repair {
 
     @Override
     public String toString() {
-        return "Repair{" +
-                "id=" + id +
-                ", customerName='" + customerName + '\'' +
-                ", device='" + device + '\'' +
-                ", issue='" + issue + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+        return "Repair{" + "id=" + id + ", customerName='" + customerName + '\'' + ", device='" + device + '\'' + ", issue='" + issue + '\'' + ", status='" + status + '\'' + '}';
     }
 }

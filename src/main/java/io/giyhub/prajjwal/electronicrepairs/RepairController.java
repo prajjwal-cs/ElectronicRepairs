@@ -55,4 +55,14 @@ public class RepairController {
     public Long getCountByStatus(@PathVariable String status) {
         return repairService.getCountByStatus(status);
     }
+
+    @GetMapping("/customer/pendingStatus/{customerName}")
+    public List<Repair> getPendingRepairsOrderedByCustomerName(@PathVariable String customerName) {
+        return repairService.getPendingRepairsOrderedByCustomerName(customerName);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteRepair(@PathVariable("id") Long repairId) {
+        repairService.deleteRepair(repairId);
+    }
 }

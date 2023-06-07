@@ -44,7 +44,16 @@ public class RepairService {
     public List<Repair> getRepairsByCustomerNameAndDevice(String customerName, String device) {
         return repairRepository.findByCustomerNameAndDevice(customerName, device);
     }
+
     public Long getCountByStatus(String status) {
         return repairRepository.countByStatus(status);
+    }
+
+    public List<Repair> getPendingRepairsOrderedByCustomerName(String customerName) {
+        return repairRepository.findPendingRepairsOrderedByCustomerName(customerName);
+    }
+
+    public void deleteRepair(Long repairId) {
+        repairRepository.deleteById(repairId);
     }
 }
