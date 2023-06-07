@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const repair = {
             customerName: customerName,
             device: device,
-            issue: issue
+            issue: issue,
+            status: "Pending"
         };
 
         fetch("/api/repairs", {
@@ -60,6 +61,49 @@ document.addEventListener("DOMContentLoaded", function () {
     function addRepairToList(repair) {
         const repairItem = document.createElement("li");
         repairItem.textContent = `${repair.customerName} - ${repair.device} (${repair.status})`;
+
+        const completeButton = document.createElement("button");
+        completeButton.textContent = "Complete";
+        completeButton.addEventListener("click", function () {
+            markRepairStatus(repair.id, "Complete");
+        });
+
+        const incompleteButton = document.createElement("button");
+        incompleteButton.textContent = "Incomplete";
+        incompleteButton.addEventListener("click", function () {
+            markRepairStatus(repair.id, "Incomplete");
+        });
+
+        repairItem.appendChild(completeButton);
+        repairItem.appendChild(incompleteButton);
+
         repairList.appendChild(repairItem);
+    }
+
+    // Function to mark repair status as complete or incomplete
+    function markRepairStatus(repairId, status) {
+        const data = {
+            status: status
+        };
+
+        fetch(`/api/repairs/${repairId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Update the status in the frontend
+                    const repairItem = document.querySelector(`li[data-id="${repairId}"]`);
+                    repairItem.textContent = `${repairItem.textContent.split(" - ")[0]} - ${status}`;
+                } else {
+                    console.error("Error:", response.status);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
     }
 });
