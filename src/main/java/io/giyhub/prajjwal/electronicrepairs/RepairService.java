@@ -3,6 +3,8 @@ package io.giyhub.prajjwal.electronicrepairs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RepairService {
     private final RepairRepository repairRepository;
@@ -21,5 +23,28 @@ public class RepairService {
         Repair repair = repairRepository.findById(repairId).orElseThrow(() -> new RuntimeException("Repair not found"));
         repair.setStatus(String.valueOf(repair));
         return repairRepository.save(repair);
+    }
+
+    public List<Repair> getAllRepairs() {
+        return repairRepository.findAll();
+    }
+
+    public List<Repair> getRepairsByCustomerName(String customerName) {
+        return repairRepository.findByCustomerName(customerName);
+    }
+
+    public List<Repair> getRepairsByStatus(String status) {
+        return repairRepository.findByStatus(status);
+    }
+
+    public List<Repair> getRepairsByDevice(String device) {
+        return repairRepository.findByDevice(device);
+    }
+
+    public List<Repair> getRepairsByCustomerNameAndDevice(String customerName, String device) {
+        return repairRepository.findByCustomerNameAndDevice(customerName, device);
+    }
+    private Long getCountByStatus(String status) {
+        return repairRepository.countByStatus(status);
     }
 }
